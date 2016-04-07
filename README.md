@@ -6,7 +6,7 @@ python3 program.py
 
 Required files:
 
-Posts.xml
+Posts.xml, 
 Tags.xml
 
 
