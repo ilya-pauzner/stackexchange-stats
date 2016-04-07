@@ -1,7 +1,7 @@
-import xml.etree.ElementTree as ET
+import xml.etree.ElementTree
 
 def get_xml(name):
-    return ET.parse(name).getroot()
+    return xml.etree.ElementTree.parse(name).getroot()
 
 def have_any(substrings, string):
     for elem in substrings:
