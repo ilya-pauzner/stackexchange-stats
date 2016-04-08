@@ -1,4 +1,5 @@
 import xml.etree.ElementTree
+import string
 
 def get_xml(name):
     return xml.etree.ElementTree.parse(name).getroot()
@@ -55,8 +56,25 @@ for elem in sorted(lotr_users):
 
 answer = open('output.html', 'w')
 print('<html><head><title> Stats </title></head><body><h3> Here are users who participated in Lord of the Rings and Harry Potter sections, but did not participate in the Star wars section </h3><br>', file = answer) 
+print('<table border = "1px solid black">', file = answer)
+print('<th> Name </th> <th> Id </th>', file = answer)
+users = get_xml('Users.xml')
+users_dict = dict()
+for elem in users:
+    users_dict[elem.attrib['Id']] = elem
+    
+for i in range(len(good_guys)):
+    good_guys[i] = [users_dict[str(good_guys[i])].attrib['DisplayName'], good_guys[i]]
+    
 good_guys.sort()
+
 for elem in good_guys:
-    print('User #', elem, ' <br>', sep = '', file = answer)
-print('</body></html>', file = answer)
+    t = elem[0]
+    elem[0] = ''
+    for letter in t:
+        if letter in string.ascii_letters:
+            elem[0] += letter
+        print('<tr> <td>', elem[0], '</td> <td>', elem[1] ,'</td> </tr>', file = answer)
+
+print('</table></body></html>', file = answer)
 answer.close()
