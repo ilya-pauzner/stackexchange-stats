@@ -74,7 +74,7 @@ for elem in good_guys:
     for letter in t:
         if letter in string.ascii_letters:
             elem[0] += letter
-        print('<tr> <td>', elem[0], '</td> <td>', elem[1] ,'</td> </tr>', file = answer)
+    print('<tr> <td>', elem[0], '</td> <td>', elem[1] ,'</td> </tr>', file = answer)
 
 print('</table></body></html>', file = answer)
 answer.close()
